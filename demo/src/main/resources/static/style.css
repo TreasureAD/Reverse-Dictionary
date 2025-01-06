@@ -1,0 +1,145 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #009cd5;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    padding: 20px;
+    background: #007bb5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#search-input {
+    width: 50%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#search-button {
+    background: #ffd700;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#search-button:hover {
+    background: #ffc107;
+}
+
+/* Results Container */
+#results-container {
+    margin-top: 50px;
+    text-align: left;
+    list-style: none;
+    padding: 20px;
+    font-size: 1.2rem;
+}
+
+/* Decorative Bubbles */
+body::after,
+body::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: float 5s infinite ease-in-out alternate;
+}
+
+body::after {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0.5s;
+}
+
+body::before {
+    width: 150px;
+    height: 150px;
+    bottom: 10%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-30px);
+    }
+}
+
+/* Extra Bubbles */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    animation: bubble-rise 10s infinite ease-in;
+}
+
+.bubble:nth-child(1) {
+    width: 30px;
+    height: 30px;
+    bottom: 10%;
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.bubble:nth-child(2) {
+    width: 50px;
+    height: 50px;
+    bottom: 15%;
+    left: 70%;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(3) {
+    width: 40px;
+    height: 40px;
+    bottom: 5%;
+    left: 50%;
+    animation-delay: 3s;
+}
+
+@keyframes bubble-rise {
+    0% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-300px);
+        opacity: 0;
+    }
+}
