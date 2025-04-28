@@ -251,3 +251,38 @@ Below is a **complete summary** of available API endpoints, their actions, and t
   ```
 
 ---
+
+@Override
+public Map<String, Object> executeDataaccess(RequestDataContext requestDataContext) throws Exception {
+    logger.info("Entering executeDataaccess method.");
+    Map<String, Object> returnMap = new HashMap<>();
+
+    HttpSession session = requestDataContext.getHttpSession();
+    if (session == null) {
+        String error = "executeDataaccess: HttpSession was null.";
+        logger.error(error);
+        throw new SystemException(error);
+    }
+
+    String idNumberGiven = getStringInput(requestDataContext, INPUT_ID_NUMBER, true);
+    logger.debug("Collected ID number: {}", idNumberGiven);
+
+    // Try to retrieve Person from CSV
+    Person person = personLookupService.lookupPerson(idNumberGiven); // (You already have this CSV lookup logic)
+
+    if (person == null) {
+        logger.warn("No record found in CSV for ID: {}. Using stub.", idNumberGiven);
+        person = getStub("TD_UserInfoById", Person.class, idNumberGiven);
+    }
+
+    // Add person object to the map
+    returnMap.put(OUTPUT_PERSON, person);
+
+    // Add fields separately too
+    returnMap.put(OUTPUT_NAME, person.getName());
+    returnMap.put(OUTPUT_COMPANY, person.getCompany());
+
+    logger.info("Exiting executeDataaccess method.");
+    return returnMap;
+}
+
